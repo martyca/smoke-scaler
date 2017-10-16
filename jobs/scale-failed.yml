@@ -10,4 +10,4 @@ inputs:
 
 
 run:
-  path: this-git-repo/scripts/deploy-failed.sh
+  path: this-git-repo/scripts/scale-failed.sh

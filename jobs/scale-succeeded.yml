@@ -10,4 +10,4 @@ inputs:
 
 
 run:
-  path: this-git-repo/scripts/deploy-succeeded.sh
+  path: this-git-repo/scripts/scale-succeeded.sh
