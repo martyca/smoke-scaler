@@ -1,0 +1,37 @@
+---
+resources:
+- name: this-git-repo
+  type: git
+  source:
+    uri: https://github.com/martyca/concourse-tests.git
+
+jobs:
+- name: job-deploy-webapp
+  serial: true
+  plan:
+  - get: this-git-repo
+    trigger: true
+  - task: task-deploy
+    file: this-git-repo/jobs/deploy.yml
+    params:
+      api: {{cf-api}}
+      username: {{cf-username}}
+      password: {{cf-password}}
+      organization: {{cf-organization}}
+      space: {{cf-space}}
+    on_success:
+      task: deploy-succeeded
+      file: this-git-repo/jobs/deploy-succeeded.yml
+      params:
+        slackurl: {{slack-url}}
+        slackchannel: {{slack-channel}}
+        slackuser: {{slack-user}}
+        slackicon: {{slack-icon}}
+    on_failure:
+      task: deploy-failed
+      file: this-git-repo/jobs/deploy-failed.yml
+      params:
+        slackurl: {{slack-url}}
+        slackchannel: {{slack-channel}}
+        slackuser: {{slack-user}}
+        slackicon: {{slack-icon}}

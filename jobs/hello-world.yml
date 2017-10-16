@@ -1,0 +1,13 @@
+---
+platform: linux
+
+image_resource:
+  type: docker-image
+  source: {repository: busybox}
+
+inputs:
+- name: this-git-repo
+
+
+run:
+  path: this-git-repo/scripts/hello-world.sh
