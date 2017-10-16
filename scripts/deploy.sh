@@ -1,5 +1,5 @@
 #!/bin/sh
-# set
+set
 
 cf login -a $api -u $username -p $password -o $organization -s $space &&\
 cd ./this-git-repo/webapp/ &&\
