@@ -37,3 +37,29 @@ jobs:
         slackchannel: {{slack-channel}}
         slackuser: {{slack-user}}
         slackicon: {{slack-icon}}
+  - task: task-check-scaler
+    file: this-git-repo/jobs/scaler.yml
+    params:
+      api: {{cf-api}}
+      username: {{cf-username}}
+      password: {{cf-password}}
+      organization: {{cf-organization}}
+      space: {{cf-space}}
+      route: ((route))
+      domain: ((domain))
+    on_success:
+      task: scale-succeeded
+      file: this-git-repo/jobs/scale-succeeded.yml
+      params:
+        slackurl: {{slack-url}}
+        slackchannel: {{slack-channel}}
+        slackuser: {{slack-user}}
+        slackicon: {{slack-icon}}
+    on_failure:
+      task: scale-failed
+      file: this-git-repo/jobs/scale-failed.yml
+      params:
+        slackurl: {{slack-url}}
+        slackchannel: {{slack-channel}}
+        slackuser: {{slack-user}}
+        slackicon: {{slack-icon}}
