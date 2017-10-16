@@ -3,7 +3,7 @@ resources:
 - name: this-git-repo
   type: git
   source:
-    uri: https://github.com/martyca/concourse-tests.git
+    uri: https://github.com/martyca/smoke-scaler.git
 
 jobs:
 - name: job-deploy-webapp
@@ -19,6 +19,8 @@ jobs:
       password: {{cf-password}}
       organization: {{cf-organization}}
       space: {{cf-space}}
+      route: ((route))
+      domain: ((domain))
     on_success:
       task: deploy-succeeded
       file: this-git-repo/jobs/deploy-succeeded.yml
