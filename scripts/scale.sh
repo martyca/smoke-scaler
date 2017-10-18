@@ -14,12 +14,12 @@ guid=$(cf curl "/v2/apps" | jq ".resources[$index].metadata.guid" | tr -d '"')
 
 echo $guid
 
-while [[ $i -gt "0" ]]
+while [[ $i -gt 0 ]]
 do
   instances=$(cf curl "/v2/apps/$guid" | jq .entity.instances)
   echo "Iteration: $iterations"
   echo "Number of instances is: $instances"
-  if [[ "$instances" == "1" ]]
+  if [[ "$instances" -eq 1 ]]
   then
     echo "App is scaled down, exiting."
     exit 0
