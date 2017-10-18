@@ -19,7 +19,7 @@ do
   instances=$(cf curl "/v2/apps/$guid" | jq .entity.instances)
   echo "Iteration: $iterations"
   echo "Number of instances is: $instances"
-  if [ "$instances" -eq "1" ]
+  if [[ "$instances" == "1" ]]
   then
     echo "App is scaled down, exiting."
     exit 0
