@@ -14,7 +14,7 @@ guid=$(cf curl "/v2/apps" | jq ".resources[$index].metadata.guid" | tr -d '"')
 
 echo $guid
 
-while [ $i -gt 0 ]
+while [[ $i -gt "0" ]]
 do
   instances=$(cf curl "/v2/apps/$guid" | jq .entity.instances)
   echo "Iteration: $iterations"
