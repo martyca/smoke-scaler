@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 # timeout is iterations times duration in seconds, so 100 * 3 = 300 seconds is 5 minutes.
 iterations="100"
